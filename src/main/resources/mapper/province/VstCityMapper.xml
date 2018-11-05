@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 城市列表 -->
+<mapper namespace="com.vst.defend.dao.province.VstCityDao">
+  	
+  	<select id="queryForList" parameterType="map" resultType="java.util.HashMap">
+  		select a.*, b.vst_province_name
+  		FROM vst_sys_city a
+  		LEFT JOIN vst_sys_province b ON a.vst_province_id = b.vst_province_id
+  		<where>
+  			<if test="vst_pk_id != null and vst_pk_id != ''">
+  				a.vst_pk_id = #{vst_pk_id}
+  			</if>
+  			<if test="vst_city_id != null and vst_city_id != ''">
+  				AND a.vst_city_id = #{vst_city_id}
+  			</if>
+  			<if test="vst_city_name != null and vst_city_name != ''">
+  				AND a.vst_city_name like '%${vst_city_name}%'
+  			</if>
+  			<if test="vst_city_code != null and vst_city_code != ''">
+  				AND a.vst_city_code = #{vst_city_code}
+  			</if>
+  			<if test="vst_city_status != null and vst_city_status != ''">
+  				AND a.vst_city_status = #{vst_city_status}
+  			</if>
+  			<if test="vst_province_id != null and vst_province_id != ''">
+  				AND a.vst_province_id = #{vst_province_id}
+  			</if>
+  			<if test="vst_province_name != null and vst_province_name != ''">
+  				AND b.vst_province_name = #{vst_province_name}
+  			</if>
+  		</where>
+  		ORDER BY
+		<choose>
+			<when test="orderBy == null or orderBy == ''">
+				vst_city_number ASC
+			</when>
+			<otherwise>
+				${orderBy} ${order}
+			</otherwise>
+		</choose>
+		<if test="limit != null and limit != ''">
+			LIMIT #{limit}
+		</if>
+		<if test="offset != null and offset != ''">
+			OFFSET #{offset}
+		</if>
+  	</select>
+  	
+  	<select id="queryCount" parameterType="map" resultType="int">
+  		SELECT count(1) FROM vst_sys_city a
+  		LEFT JOIN vst_sys_province b ON a.vst_province_id = b.vst_province_id
+		<where>
+  			<if test="vst_pk_id != null and vst_pk_id != ''">
+  				a.vst_pk_id = #{vst_pk_id}
+  			</if>
+  			<if test="vst_city_id != null and vst_city_id != ''">
+  				AND a.vst_city_id = #{vst_city_id}
+  			</if>
+  			<if test="vst_city_name != null and vst_city_name != ''">
+  				AND a.vst_city_name like '%${vst_city_name}%'
+  			</if>
+  			<if test="vst_city_code != null and vst_city_code != ''">
+  				AND a.vst_city_code = #{vst_city_code}
+  			</if>
+  			<if test="vst_city_status != null and vst_city_status != ''">
+  				AND a.vst_city_status = #{vst_city_status}
+  			</if>
+  			<if test="vst_province_id != null and vst_province_id != ''">
+  				AND a.vst_province_id = #{vst_province_id}
+  			</if>
+  			<if test="vst_province_name != null and vst_province_name != ''">
+  				AND b.vst_province_name = #{vst_province_name}
+  			</if>
+  		</where>
+  	</select>
+  	
+  	<select id="queryById" parameterType="String" resultType="map">
+		SELECT * FROM vst_sys_city
+		WHERE vst_city_id = #{vst_city_id}
+	</select>
+  	
+  	<update id="update" parameterType="VstSysCity">
+		UPDATE vst_sys_city
+		<set>
+			<if test="vst_city_name != null">
+				vst_city_name = #{vst_city_name},
+		  	</if>
+			<if test="vst_city_number != null">
+				vst_city_number = #{vst_city_number},
+		  	</if>
+			<if test="vst_city_code != null">
+				vst_city_code = #{vst_city_code},
+		  	</if>
+			<if test="vst_city_status != null">
+				vst_city_status = #{vst_city_status},
+		  	</if>
+			<if test="vst_province_id != null">
+				vst_province_id = #{vst_province_id},
+		  	</if>
+			<if test="vst_city_desc != null">
+				vst_city_desc = #{vst_city_desc},
+		  	</if>
+			<if test="vst_city_uptime != null">
+				vst_city_uptime = #{vst_city_uptime},
+		  	</if>
+			<if test="vst_city_updator != null">
+				vst_city_updator = #{vst_city_updator},
+		  	</if>
+		</set>
+		WHERE vst_city_id = #{vst_city_id}
+	</update>
+  	
+  	<!-- 批量修改 -->
+	<update id="batchUpdate" parameterType="list">
+    	update vst_sys_city 
+        <trim prefix="set" suffixOverrides=",">
+			<trim prefix="vst_city_number =case" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+			    	<if test="i.vst_city_number != null">
+			        	when vst_city_id=#{i.vst_city_id} then #{i.vst_city_number}
+			    	</if>
+				</foreach>
+			</trim>
+			<trim prefix="vst_city_status =case" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+			    	<if test="i.vst_city_status != null">
+			        	when vst_city_id=#{i.vst_city_id} then #{i.vst_city_status}
+			    	</if>
+				</foreach>
+			</trim>
+			<trim prefix="vst_city_uptime =case" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+			    	<if test="i.vst_city_uptime != null">
+			        	when vst_city_id=#{i.vst_city_id} then #{i.vst_city_uptime}
+			    	</if>
+				</foreach>
+			</trim>
+			<trim prefix="vst_city_updator =case" suffix="end,">
+				<foreach collection="list" item="i" index="index">
+			    	<if test="i.vst_city_updator != null">
+			        	when vst_city_id=#{i.vst_city_id} then #{i.vst_city_updator}
+			    	</if>
+				</foreach>
+			</trim>
+		</trim>
+        <where>
+			<foreach collection="list" separator="or" item="i" index="index" >
+	        	vst_city_id = #{i.vst_city_id}
+			</foreach>
+		</where>
+	</update>
+	
+</mapper>

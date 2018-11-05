@@ -1,0 +1,235 @@
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    background: #E9E9E9 url(img/bg.jpg) 50% 0;
+    transform: translate3d(0, 0, 0);
+    animation: flow 16s linear infinite;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "微软雅黑";
+}
+
+#wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -250px;
+    width: 500px;
+    height: 120px;
+    text-align: center;
+}
+
+#wrapper h1 {
+    margin: 0 0 20px;
+    padding: 0;
+    font-weight: 300;
+    font-size: 30px;
+}
+
+#wrapper h1 b{
+    font-weight: 700;
+}
+
+#start {
+    width: 120px;
+    height: 40px;
+    +margin-left: 260px;
+    vertical-align: middle;
+    font-family: "微软雅黑";
+    cursor: pointer;
+}
+
+#stop {
+    display:none;
+    width: 120px;
+    height: 40px;
+    vertical-align: middle;
+    font-family: 微软雅黑;
+    cursor: pointer;
+}
+
+#cfg {
+    color: #666;
+    text-shadow: 1px 1px 1px #eee;
+    font-size: 12px;
+    cursor: pointer;
+}
+.temp {
+    position: absolute;
+    z-index: -1;
+    color: #777;
+}
+
+#ok {
+    float: right;
+    margin: -3px 0 0;
+    color: #666;
+    cursor: pointer;
+    width: 50px;
+    height: 22px;
+}
+
+#popbox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -140px;
+    margin-left: -210px;
+    padding: 0 10px;
+    width: 400px;
+    height: 280px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    background: #fff;
+    -webkit-box-shadow: 0 0 22px #333,inset 0 -3px 7px #DDD;
+	-moz-box-shadow: 0 0 22px #333,inset 0 -3px 7px #DDD;
+    box-shadow: 0 0 22px #333,inset 0 -3px 7px #DDD;
+	+border:1px solid #666;
+}
+
+#done {
+    float: right;
+    margin: -3px 0 0;
+    color: #666;
+    cursor: pointer;
+    width: 50px;
+    height: 22px;
+}
+
+#popbox-wrapper{
+	position: absolute;
+    top: 0;
+    left: 0;
+	display: none;
+    width: 100%;
+	height: 100%;
+}
+
+#popbox{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -140px;
+	margin-left: -200px;
+	width: 400px;
+	height: 300px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: #fff;
+	-webkit-box-shadow: 0 0 0 5px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 0 0 5px rgba(0,0,0,.2);
+	box-shadow: 0 0 0 5px rgba(0,0,0,.2);
+	+border: 5px solid #5D5D5C;
+}
+
+.ie8 #popbox { border: 5px solid #5D5D5C }
+#popbox h3{
+	margin: 0;
+	padding: 20px 0;
+	border-bottom: 1px solid #bbb;
+	-webkit-border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+	background: #E7E7E7 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA7CAIAAAA1lncVAAAAIklEQVQI12P4//8/0////5kYGBjgNC42PnWkilHDDBLtAgC6y0sq4aOFWQAAAABJRU5ErkJggg==") repeat-x 0 100%;
+	color: #333;
+	text-align: center;
+	font-weight: 700;
+	font-size: 19px;
+	line-height: 1;
+}
+
+#popbox textarea{
+	overflow: auto;
+    margin: 10px;
+    width: 360px;
+    height: 150px;
+    border: 0;
+    background: #efefef;
+    font-size: 14px;
+    resize: none;
+    padding: 10px;
+}
+
+#done{
+	margin-left: 1%;
+    margin-bottom: 1%;
+    width: 38%;
+    height: 42px;
+    color: #fff;
+    cursor: pointer;
+    -webkit-appearance: button;
+    font-size: 18px;
+}
+
+/* =Buttons
+----------------------------------------------- */
+.btn-default, .label-default, .woocommerce #respond input#submit,
+.woocommerce a.button, .woocommerce button.button, .woocommerce input.button,
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt,
+.woocommerce button.button.alt, .woocommerce input.button.alt,
+a.more-link {
+    background-color: #DA4453;
+  	border-color: #DA4453;
+  	-webkit-transition: background-color 0.3s linear;
+    -moz-transition: background-color 0.3s linear;
+    -o-transition: background-color 0.3s linear;
+    transition: background-color 0.3s linear;
+}
+.btn-default:hover,
+.label-default[href]:hover,
+.label-default[href]:focus,
+.btn-default:hover, .btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+#image-navigation .nav-previous a:hover,
+#image-navigation .nav-next a:hover, .woocommerce #respond input#submit:hover,
+.woocommerce #respond input#submit.alt:hover, .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover,
+.woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover,
+a.more-link:hover {
+    background-color: #363636;
+  	border-color: #363636;
+  	color: #FFF;
+}
+.btn.btn-default, .woocommerce #respond input#submit, .woocommerce a.button,
+.woocommerce button.button, .woocommerce input.button,
+a.more-link {
+    color: #FFF;
+    text-transform: uppercase;
+}
+.input-group-btn:last-child>.btn {
+    margin-left: 0;
+}
+button, .button {
+    background-color: #DA4453;
+  	border: none;
+  	text-transform: uppercase;
+  	-webkit-border-radius: 4px;
+  	border-radius: 4px;
+  	color: #fff;
+  	font-size: 12px;
+  	padding: 5px 12px;
+  	-webkit-transition: background-color 0.3s linear;
+    -moz-transition: background-color 0.3s linear;
+    -o-transition: background-color 0.3s linear;
+    transition: background-color 0.3s linear;
+}
+button:hover, .button:hover {
+    background-color: #ff9f23;
+}
+#subscription-toggle {
+    float: right;
+}
